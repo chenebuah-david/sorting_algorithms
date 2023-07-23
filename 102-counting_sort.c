@@ -4,16 +4,16 @@
  * get_max - This gets the maximum value in an array of integers
  * @array: This is an array of integers
  * @size: This is the size of the array
- * Return: The maximum integer in the array.
+ * Return: The maximum integer in the array
  */
 int get_max(int *array, int size)
 {
-	int max, i;
+	int max, j;
 
-	for (max = array[0], i = 1; i < size; i++)
+	for (max = array[0], j = 1; j < size; j++)
 	{
-		if (array[i] > max)
-			max = array[i];
+		if (array[j] > max)
+			max = array[j];
 	}
 
 	return (max);
@@ -28,7 +28,7 @@ order using the counting sort algorithm
  */
 void counting_sort(int *array, size_t size)
 {
-	int *count, *sorted, max, i;
+	int *count, *sorted, max, j;
 
 	if (array == NULL || size < 2)
 		return;
@@ -44,22 +44,22 @@ void counting_sort(int *array, size_t size)
 		return;
 	}
 
-	for (i = 0; i < (max + 1); i++)
-		count[i] = 0;
-	for (i = 0; i < (int)size; i++)
-		count[array[i]] += 1;
-	for (i = 0; i < (max + 1); i++)
-		count[i] += count[i - 1];
+	for (j = 0; j < (max + 1); j++)
+		count[j] = 0;
+	for (j = 0; j < (int)size; j++)
+		count[array[j]] += 1;
+	for (j = 0; j < (max + 1); j++)
+		count[j] += count[j - 1];
 	print_array(count, max + 1);
 
-	for (i = 0; i < (int)size; i++)
+	for (j = 0; j < (int)size; j++)
 	{
-		sorted[count[array[i]] - 1] = array[i];
-		count[array[i]] -= 1;
+		sorted[count[array[j]] - 1] = array[j];
+		count[array[j]] -= 1;
 	}
 
-	for (i = 0; i < (int)size; i++)
-		array[i] = sorted[i];
+	for (j = 0; j < (int)size; j++)
+		array[j]= sorted[j];
 
 	free(sorted);
 	free(count);
